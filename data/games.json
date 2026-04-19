@@ -1,0 +1,31 @@
+{
+    "series": [
+        {"name": "The Legend of Zelda", "games": []},
+        {"name": "Resident Evil", "games": []},
+        {"name": "Super Smash Bros.", "games": []},
+        {"name": "Pathologic", "games": []},
+        {"name": "The Silver Case", "games": []}
+    ],
+    "standalone_games": [],
+    "consoles": [
+        "PC",
+        "PS1",
+        "PS2",
+        "PS3",
+        "PS4",
+        "PS5",
+        "Xbox",
+        "Xbox 360",
+        "Xbox One",
+        "Xbox Series X",
+        "Nintendo 64",
+        "GameCube",
+        "Wii",
+        "Wii U",
+        "Nintendo Switch",
+        "Game Boy",
+        "Game Boy Advance",
+        "Nintendo DS",
+        "Nintendo 3DS"
+    ]
+}

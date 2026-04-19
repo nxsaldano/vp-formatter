@@ -1,12 +1,12 @@
+from app.utils import resource_path
 import json
-import os
 
 # It seems the os is another "Python class" we call..
 # And thus, we get OS related stuff like pathnames from it.
 # __file__ is a Python variable which holds a path... to where?
 # Clearly, the file where the line is written!
 # Path to the data file, resolved relative to this file's location
-DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "..", "data", "games.json")
+DATA_FILE = resource_path("data/games.json")
 
 class GameLibrary:
     # The GameLibrary class is our subject who is authorized.
@@ -26,18 +26,14 @@ class GameLibrary:
     # Apparently it means the function returns a dictionary.
     # Python does not give a shit about this keyword, it's just for the IDE and the coder.
     def _load(self) -> dict:
-        # normpath "normalizes" our path, making it absolute and easier to manipualte.
-        path = os.path.normpath(DATA_FILE)
-        # we can tell that this line opens a file with a path
-        # the "r" stands for "read"
-        with open(path, "r", encoding="utf-8") as f:
+
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
             # now this line parses the JSON file into a Python dictionary
             # let's remember a Python dictionary is basically the same thing as a JSON object...
             return json.load(f)
 
     def save(self):
-        path = os.path.normpath(DATA_FILE)
-        with open(path, "w", encoding="utf-8") as f:
+        with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(self._data, f, indent=4, ensure_ascii=False)
 
     # now for series related functions...

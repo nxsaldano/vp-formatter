@@ -2,7 +2,8 @@ from PyQt6.QtWidgets import QMainWindow, QWidget, QHBoxLayout
 from PyQt6.QtGui import QPainter, QPixmap
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
- 
+
+from app.utils import resource_path 
 from app.models.game_library import GameLibrary
 from app.views.caption_form import CaptionForm
 from app.views.output_panel import OutputPanel
@@ -35,11 +36,11 @@ class MainWindow(QMainWindow):
         self.caption_form.caption_generated.connect(self.output_panel.set_caption)
 
         central_widget.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setWindowIcon(QIcon("assets/icon.png"))
+        self.setWindowIcon(QIcon(resource_path("assets/icon.png")))
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        pixmap = QPixmap("assets/background.jpg")
+        pixmap = QPixmap(resource_path("assets/background.jpg"))
         painter.drawPixmap(0, 0, pixmap)
 
 

@@ -4,7 +4,7 @@ from app.main_window import MainWindow
 
 
 def main():
-    # QApplication is like an "engine"...
+
     app = QApplication(sys.argv)
     app.setApplicationName("Pinterest Caption Generator")
 

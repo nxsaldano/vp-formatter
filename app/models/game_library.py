@@ -1,42 +1,28 @@
 from app.utils import resource_path
 import json
 
-# It seems the os is another "Python class" we call..
-# And thus, we get OS related stuff like pathnames from it.
-# __file__ is a Python variable which holds a path... to where?
-# Clearly, the file where the line is written!
-# Path to the data file, resolved relative to this file's location
+# path to the data file, resolved relative to this file's location
 DATA_FILE = resource_path("data/games.json")
 
 class GameLibrary:
-    # The GameLibrary class is our subject who is authorized.
-    # This might not work. We might need more space. Let's try it: the GameLibrary class is our subject who is...
-    # Not enough. He's authorized to talk about Games. He's the one the UI will ask for info on Games. Our intermediary.
-    # An Intermerdiary.
 
-    # Our initialization function for the class. We've seen this before.
+    # initialization function for the class
     def __init__(self):
         self._data = self._load()
 
-    # Our loading and saving "cuntions" come next.
-
-    # The "_" means: "Please don't call this from outside of the class! It's for internal use only, thanks."
-    # Python doesn't enforce this, it's purpose is to help the coder.
-    # More interesting however, is the "dict" keyword...
-    # Apparently it means the function returns a dictionary.
-    # Python does not give a shit about this keyword, it's just for the IDE and the coder.
+    # internal use function
+    # returns a dictionary
     def _load(self) -> dict:
 
         with open(DATA_FILE, "r", encoding="utf-8") as f:
-            # now this line parses the JSON file into a Python dictionary
-            # let's remember a Python dictionary is basically the same thing as a JSON object...
+            # parses the JSON file into a Python dictionary
             return json.load(f)
 
     def save(self):
         with open(DATA_FILE, "w", encoding="utf-8") as f:
             json.dump(self._data, f, indent=4, ensure_ascii=False)
 
-    # now for series related functions...
+    # series functions
 
     def get_series_names(self) -> list[str]:
         return [s["name"] for s in self._data["series"]]
@@ -60,7 +46,7 @@ class GameLibrary:
                     self.save()
                 return
 
-    # now standalone games...
+    # game functions
 
     def get_standalone_games(self) -> list[str]:
         return self._data["standalone_games"]
@@ -70,7 +56,7 @@ class GameLibrary:
             self._data["standalone_games"].append(game_title)
             self.save()
 
-    # finally, consoles...
+    # console functions
 
     def get_consoles(self) -> list[str]:
         return self._data["consoles"]
